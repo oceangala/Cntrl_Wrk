@@ -21,13 +21,26 @@ void PrintArray(string[] array)
 int GetSize()
 {
     Console.Write("Enter array size: ");
-    int size = Convert.ToInt32(Console.ReadLine());
-    if (size < 1)
+    string? input = Console.ReadLine();
+    bool res = int.TryParse(input, out var number);
+    if (res)
     {
-        Console.WriteLine("Array size must be greater than 0, try again");
+        int size = Convert.ToInt16(input);
+        if (size < 1)
+        {
+            Console.WriteLine("Array size must be number greater than 0, try again");
+            return GetSize();
+        }
+        else return size;
+    }
+
+
+    else
+    {
+        Console.WriteLine("Array size must be number greater than 0, try again");
         return GetSize();
     }
-    else return size;
+
 }
 
 string[] FindElements(string[] array)
